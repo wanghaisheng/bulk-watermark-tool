@@ -1,0 +1,38 @@
+{
+	"width": 1480,
+	"height": 920,
+	"texts": [{
+		"textType": "heading",
+		"fontFile": "",
+		"x": 49,
+		"y": 105,
+		"width": 415,
+		"height": 95,
+		"topLeft": "(49, 105)",
+		"topRight": "(464, 105)",
+		"bottomLeft": "(49, 200)",
+		"bottomRight": "(464, 200)",
+		"fontSize": 24,
+		"fontName": "Arial",
+		"gridSize": 10,
+		"nearestGridSerialNumber": 11,
+		"fontcolor": "rgb(0, 0, 0)"
+	}, 
+	{
+		"textType": "subheading",
+		"fontFile": "MSYHMONO.ttf",
+		"x": 205,
+		"y": 275,
+		"width": 415,
+		"height": 103,
+		"topLeft": "(205, 275)",
+		"topRight": "(620, 275)",
+		"bottomLeft": "(205, 378)",
+		"bottomRight": "(620, 378)",
+		"fontSize": 26,
+		"fontName": "MSYHMONO",
+		"gridSize": 10,
+		"nearestGridSerialNumber": 33,
+		"fontcolor": "rgb(0, 0, 0)"
+	}]
+}

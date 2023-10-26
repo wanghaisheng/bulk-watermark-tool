@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThumbnailGenius - Home</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "iwey0nghpv");
+    </script>    
+<script src="./hw-hmscore-analytics-web-6.9.9-300.umd.js"></script>
+<script>
+    (function () {
+
+    // https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/javascript-accessing-0000001051147976
+
+    const  agConnectConfig = 
+{
+	"agcgw":{
+		"backurl":"connect-dra.hispace.hicloud.com",
+		"url":"connect-dra.dbankcloud.cn",
+		"websocketbackurl":"connect-ws-dra.hispace.dbankcloud.com",
+		"websocketurl":"connect-ws-dra.hispace.dbankcloud.cn"
+	},
+	"agcgw_all":{
+		"CN":"connect-drcn.dbankcloud.cn",
+		"CN_back":"connect-drcn.hispace.hicloud.com",
+		"DE":"connect-dre.dbankcloud.cn",
+		"DE_back":"connect-dre.hispace.hicloud.com",
+		"RU":"connect-drru.hispace.dbankcloud.ru",
+		"RU_back":"connect-drru.hispace.dbankcloud.cn",
+		"SG":"connect-dra.dbankcloud.cn",
+		"SG_back":"connect-dra.hispace.hicloud.com"
+	},
+	"websocketgw_all":{
+		"CN":"connect-ws-drcn.hispace.dbankcloud.cn",
+		"CN_back":"connect-ws-drcn.hispace.dbankcloud.com",
+		"DE":"connect-ws-dre.hispace.dbankcloud.cn",
+		"DE_back":"connect-ws-dre.hispace.dbankcloud.com",
+		"RU":"connect-ws-drru.hispace.dbankcloud.ru",
+		"RU_back":"connect-ws-drru.hispace.dbankcloud.cn",
+		"SG":"connect-ws-dra.hispace.dbankcloud.cn",
+		"SG_back":"connect-ws-dra.hispace.dbankcloud.com"
+	},
+	"client":{
+		"cp_id":"30086000699684214",
+		"product_id":"388421841221685022",
+		"client_id":"1247025396847800128",
+		"client_secret":"80536CF95D00DC58A34DFD37D5AACC445A267119C0795D22187645AD665A3ED1",
+		"project_id":"388421841221685022",
+		"app_id":"172249065902717057",
+		"api_key":"DAEDALdcZii04lsv1gOx0xNu1ZL7mnflb5c1BLB8ua2HZN0BES6BbVwOHFenbiOB7fjRVNPsMSdUkPLuG4dv6QPMF2FdVfuXyHkCuA=="
+	},
+	"oauth_client":{
+		"client_id":"109206979",
+		"client_type":7
+	},
+	"app_info":{
+		"app_id":"172249065902717057"
+	},
+	"service":{
+		"analytics":{
+			"collector_url":"datacollector-dra.dt.hicloud.com,datacollector-dra.dt.dbankcloud.cn",
+			"collector_url_ru":"datacollector-drru.dt.dbankcloud.ru,datacollector-drru.dt.hicloud.com",
+			"collector_url_sg":"datacollector-dra.dt.hicloud.com,datacollector-dra.dt.dbankcloud.cn",
+			"collector_url_de":"datacollector-dre.dt.hicloud.com,datacollector-dre.dt.dbankcloud.cn",
+			"collector_url_cn":"datacollector-drcn.dt.hicloud.com,datacollector-drcn.dt.dbankcloud.cn",
+			"resource_id":"p1",
+			"channel_id":""
+		},
+		"edukit":{
+			"edu_url":"edukit.edu.cloud.huawei.com.cn",
+			"dh_url":"edukit.edu.cloud.huawei.com.cn"
+		},
+		"search":{
+			"url":"https://search-dra.cloud.huawei.com"
+		},
+		"cloudstorage":{
+			"storage_url_sg_back":"https://agc-storage-dra.cloud.huawei.asia",
+			"storage_url_ru_back":"https://agc-storage-drru.cloud.huawei.ru",
+			"storage_url_ru":"https://agc-storage-drru.cloud.huawei.ru",
+			"storage_url_de_back":"https://agc-storage-dre.cloud.huawei.eu",
+			"storage_url_de":"https://ops-dre.agcstorage.link",
+			"storage_url":"https://agc-storage-drcn.platform.dbankcloud.cn",
+			"storage_url_sg":"https://ops-dra.agcstorage.link",
+			"storage_url_cn_back":"https://agc-storage-drcn.cloud.huawei.com.cn",
+			"storage_url_cn":"https://agc-storage-drcn.platform.dbankcloud.cn"
+		},
+		"ml":{
+			"mlservice_url":"ml-api-dra.ai.dbankcloud.com,ml-api-dra.ai.dbankcloud.cn"
+		}
+	},
+	"region":"SG",
+	"configuration_version":"3.0"
+};
+/**
+ * Initializes app configuration
+ */
+
+// 启用调试模式
+// agconnect.analytics.InitSettings.debugMode = true;
+// 调试模式下，自定义终端标识
+//agconnect.analytics.InitSettings.terminalName = "my macmini";        
+//agconnect.instance().configInstance(agConnectConfig);
+
+// 是否启用url聚类
+//https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/javascript-accessing-0000001051147976#section2459527366
+agconnect.analytics.UrlClusteringOptions.enabled= false;
+// 是否移除协议
+ agconnect.analytics.UrlClusteringOptions.removeProtocol= true;
+// 是否移除协议、域名和端口
+ agconnect.analytics.UrlClusteringOptions.removeOrigin= false;
+// 是否移除全部参数
+ agconnect.analytics.UrlClusteringOptions.removeAllParams= true;
+// 是否移除指定参数
+ agconnect.analytics.UrlClusteringOptions.removeParams= {
+    // 默认处理方式，移除全部参数值，保留键名。 
+     removeValuesOnly: true,
+     params: {
+        "key1": {
+            // 是否只移除参数值，保留键名，覆盖外层的配置
+            removeValuesOnly: false,
+           // search|anchor|both  search表示锚点前的参数位置，anchor表示锚点后的参数位置，both表示锚点前的参数位置和锚点后的参数位置。
+           position: 'both',
+       }
+     }
+   };
+
+// 是否移除锚点
+ agconnect.analytics.UrlClusteringOptions.removeAnchor= true;
+// URL模式，若传入的URL按照开关处理后满足任一模式，则上报该模式。URL模式可指定 {占位符名称} 格式的占位符，占位符匹配除urlSeparators外的所有字符。
+ agconnect.analytics.UrlClusteringOptions.urlPatterns= [];
+ agconnect.analytics.UrlClusteringOptions.urlSeparators= ':/.?=&#'
+
+ agconnect.instance().configInstance(agConnectConfig);
+// Initialize the Analytics Kit instance.
+let analytics = agconnect.analytics();
+
+
+
+
+    })()
+  </script>    
+</head>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let isDrawing = false;
+        let startX = 0;
+        let startY = 0;
+        let endX = 0;
+        let endY = 0;
+        let boundingBox = [];
+        let fontSize = 16;
+        let imageLoaded = false;
+        let image;
+        let gridSerialNumberElements = [];
+        let nearestGridSerialNumber;
+        const startButton = document.getElementById("start-button");
+        const saveButton = document.getElementById("save-button");
+        const clearButton = document.getElementById("clear-button");
+        const fileInput = document.getElementById("file-input");
+        const gridSizeInput = document.getElementById("grid-size-input");
+        const displayTextColorInput = document.getElementById("display-text-color-input");
+
+        const gridLinesContainer = document.getElementById("grid-lines");
+        const boundingBoxesContainer = document.getElementById("bounding-boxes");
+        const displayGridCheckbox = document.getElementById("display-grid-checkbox");
+        const canvasWidthInput = document.getElementById("canvas-width-input");
+        const canvasHeightInput = document.getElementById("canvas-height-input");
+        let canvasWidth = 1480; // Default width
+let canvasHeight = 920; // Default height
+
+
+canvasWidthInput.addEventListener("input", () => {
+const newWidth = parseInt(canvasWidthInput.value);
+if (!isNaN(newWidth) && newWidth >= 1) {
+canvasWidth = newWidth; // Update canvas width
+canvas.width = canvasWidth; // Update canvas element
+drawGridlines();
+renderBoundingBox();
+}
+});
+
+canvasHeightInput.addEventListener("input", () => {
+const newHeight = parseInt(canvasHeightInput.value);
+if (!isNaN(newHeight) && newHeight >= 1) {
+canvasHeight = newHeight; // Update canvas height
+canvas.height = canvasHeight; // Update canvas element
+drawGridlines();
+renderBoundingBox();
+}
+});
+
+
+const textTypeDropdown = document.getElementById("text-type-dropdown");
+const customTextTypeInput = document.getElementById("custom-text-type");
+const addCustomTextTypeButton = document.getElementById("add-custom-text-type");
+
+// Default text types
+const defaultTextTypes = ["heading", "subheading", "extra"];
+
+// Function to populate the text type dropdown with default and custom options
+function populateTextTypeDropdown() {
+textTypeDropdown.innerHTML = ""; // Clear existing options
+
+// Add default options
+defaultTextTypes.forEach((textType) => {
+const option = document.createElement("option");
+option.value = textType;
+option.textContent = textType.charAt(0).toUpperCase() + textType.slice(1);
+textTypeDropdown.appendChild(option);
+});
+
+// Add custom options
+customTextTypes.forEach((textType) => {
+const option = document.createElement("option");
+option.value = textType;
+option.textContent = textType;
+textTypeDropdown.appendChild(option);
+});
+}
+
+// Event listener for the "Add" button to add custom text types
+addCustomTextTypeButton.addEventListener("click", () => {
+const customTextType = customTextTypeInput.value.trim();
+if (customTextType !== "" && !customTextTypes.includes(customTextType)) {
+customTextTypes.push(customTextType);
+populateTextTypeDropdown();
+customTextTypeInput.value = ""; // Clear the input field
+}
+});
+
+// Initialize custom text types array
+let customTextTypes = [];
+
+// Populate the initial text type dropdown options
+populateTextTypeDropdown();
+let selectedTextType = ""; // Initialize with an empty string
+
+// Event listener for the text type dropdown
+textTypeDropdown.addEventListener("change", () => {
+
+selectedTextType = textTypeDropdown.value; // Assign the selected text type
+
+if (selectedTextType) {
+// Tag the bounding box with the selected text type
+currentBoundingBox.textType = selectedTextType;
+}
+});
+
+let currentBoundingBox = {
+x: 0,
+y: 0,
+width: 0,
+height: 0,
+fontSize: 0,
+textType: textTypeDropdown.value,
+nearestGridSerialNumber: 0,
+};
+
+        gridSerialNumberElements = Array.from(document.getElementsByClassName("grid-serial-number"));
+        gridLinesContainer.innerHTML = "";
+
+        function showGridSerialNumbers() {
+            gridLinesContainer.style.display = "block";
+        }
+
+        function hideGridSerialNumbers() {
+            gridLinesContainer.style.display = "none";
+        }
+
+        displayGridCheckbox.addEventListener("change", () => {
+            const displayGrid = displayGridCheckbox.checked;
+            if (displayGrid) {
+                showGridSerialNumbers();
+            } else {
+                hideGridSerialNumbers();
+            }
+        });
+
+        displayGridCheckbox.addEventListener("change", () => {
+            const displayGrid = displayGridCheckbox.checked;
+            if (displayGrid) {
+                showGridSerialNumbers();
+            } else {
+                hideGridSerialNumbers();
+            }
+        });
+
+        startButton.addEventListener("click", () => {
+            isDrawing = true;
+            startButton.disabled = true;
+        });
+
+        saveButton.addEventListener("click", () => { // Save the bounding box coordinates, font size, and font name
+            const data = {
+                
+width: canvasWidth, // Add canvas width
+height: canvasHeight, // Add canvas height
+                texts: boundingBox.map(
+                    (box, index) => ({
+                        textType: box.textType,
+                        fontFile: "",
+                        x: box.x,
+                        y: box.y,
+                        width: box.width,
+                        height: box.height,
+                        topLeft: `(${
+                            box.x
+                        }, ${
+                            box.y
+                        })`,
+                        topRight: `(${
+                            box.x + box.width
+                        }, ${
+                            box.y
+                        })`,
+                        bottomLeft: `(${
+                            box.x
+                        }, ${
+                            box.y + box.height
+                        })`,
+                        bottomRight: `(${
+                            box.x + box.width
+                        }, ${
+                            box.y + box.height
+                        })`,
+                        fontSize: box.fontSize,
+                        fontName: guessFontName(box),
+                        gridSize: parseInt(gridSizeInput.value),
+                        nearestGridSerialNumber: box.nearestGridSerialNumber,
+                        fontcolor:guessFontColor(box.x,box.y,box.width,box.height)
+                    })
+                )
+            };
+            // const jsonData = JSON.stringify(data);
+            // const blob = new Blob([jsonData], {type: "application/json;charset=utf-8"});
+            // const url = URL.createObjectURL(blob);
+            // const link = document.createElement("a");
+            // link.href = url;
+            // link.download = "template.json";
+            // link.click();
+
+            // isDrawing = false;
+            // startButton.disabled = false;
+
+            const jsonData = JSON.stringify(data);
+const blob = new Blob([jsonData], { type: "application/json;charset=utf-8" });
+
+// Create a temporary anchor element to trigger the download
+const a = document.createElement("a");
+a.href = URL.createObjectURL(blob);
+
+// Set the download attribute to specify the file name (e.g., template.json)
+a.download = "template.json";
+
+// Programmatically click the anchor element to trigger the download
+a.click();                    
+        });
+
+        clearButton.addEventListener("click", () => {
+            boundingBox = [];
+            renderBoundingBox();
+        });
+
+        fileInput.addEventListener("change", () => {
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                image = new Image();
+                image.onload = function () { // Resize the image to fit the canvas
+                    const aspectRatio = image.width / image.height;
+                    const canvasWidth = canvas.width;
+                    const canvasHeight = canvasWidth / aspectRatio;
+                    if (canvasHeight > canvas.height) {
+                        canvas.height = canvas.height;
+                        canvas.width = canvas.height * aspectRatio;
+                    } else {
+                        canvas.width = canvasWidth;
+                        canvas.height = canvasHeight;
+                    }
+
+                    // Draw the image
+                    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                    // Draw gridlines
+                    drawGridlines();
+
+
+                    imageLoaded = true;
+                };
+                image.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        gridSizeInput.addEventListener("change", () => {
+            drawGridlines();
+            renderBoundingBox();
+        });
+
+
+        displayTextColorInput.addEventListener("change", () => {
+            drawGridlines();
+            renderBoundingBox();
+        });
+
+        canvas.addEventListener("mousedown", startDrawing);
+        canvas.addEventListener("mouseup", stopDrawing);
+        canvas.addEventListener("mousemove", drawRectangle);
+
+
+        function startDrawing(event) {
+            if (isDrawing && imageLoaded) {
+                startX = event.offsetX;
+                startY = event.offsetY;
+                endX = startX;
+                endY = startY;
+            }
+        }
+
+        function stopDrawing() {
+if (isDrawing && imageLoaded) {
+renderBoundingBox();
+boundingBox.push({
+    x: Math.min(startX, endX),
+    y: Math.min(startY, endY),
+    width: Math.abs(endX - startX),
+    height: Math.abs(endY - startY),
+    fontSize: calculateFontSize(Math.abs(endY - startY)),
+    textType: currentBoundingBox.textType, // Include the text type
+    nearestGridSerialNumber: nearestGridSerialNumber,
+});
+}
+}
+
+
+        function drawRectangle(event) {
+            if (isDrawing && imageLoaded) {
+                endX = event.offsetX;
+                endY = event.offsetY;
+                renderBoundingBox();
+            }
+        }
+        function renderBoundingBox() { // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the image
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            // Draw the bounding boxes
+            ctx.beginPath();
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 2;
+            for (const box of boundingBox) {
+                const {x, y, width, height} = box;
+                ctx.rect(x, y, width, height);
+                ctx.stroke();
+
+                // Determine font size and font name
+                const fontSize = box.fontSize;
+                const fontName = guessFontName(box);
+
+                // Display font size and font name under the bounding box
+                // ctx.font = `${fontSize}px Arial`;
+                ctx.font = "12px Arial";
+
+                ctx.fillStyle = document.getElementById("display-text-color-input").value || "yellow";
+                ctx.fillText(`Font Size: ${fontSize}`, x, y + height + fontSize * 1 + 5);
+                ctx.fillText(`Font Name: ${fontName}`, x, y + height + (fontSize * 2) + 10);
+
+                // Display the bounding box coordinates
+                ctx.font = "12px Arial";
+
+                ctx.fillStyle = document.getElementById("display-text-color-input").value || "yellow";; // Update the font color to yellow
+                ctx.fillText(`Left-Top: (${x}, ${y})`, x, y - 20);
+                ctx.fillText(`Left-Down: (${x}, ${
+                    y + height
+                })`, x, y + height + 15);
+                ctx.fillText(`Right-Top: (${
+                    x + width
+                }, ${y})`, x + width - 60, y - 20);
+                ctx.fillText(`Right-Down: (${
+                    x + width
+                }, ${
+                    y + height
+                })`, x + width - 85, y + height + 15);
+
+                // Calculate the nearest grid zone serial number
+                const gridSize = parseInt(gridSizeInput.value);
+                const gridWidth = canvas.width / gridSize;
+                const gridHeight = canvas.height / gridSize;
+                const gridX = Math.floor(x / gridWidth) + 1;
+                const gridY = Math.floor(y / gridHeight) + 1;
+                nearestGridSerialNumber = (gridY - 1) * gridSize + gridX;
+                box.nearestGridSerialNumber=nearestGridSerialNumber
+                // Display the grid zone serial number under the bounding box
+                ctx.fillText(`Nearest Grid Zone: ${nearestGridSerialNumber}`, x, y + height + (fontSize * 3) + 20);
+                // Display font color outside the bounding box
+                const fontcolor = guessFontColor(x, y, width, height)
+                ctx.fillText(`font color: ${fontcolor}`, x, y + height + (fontSize * 4) + 30);
+
+            }
+        }
+
+
+        function guessFontColor(x, y, width, height) {
+            const data = ctx.getImageData(x, y, width, height).data;
+
+            // Loop through the pixels and find the most common color
+            const colorCounts = new Map();
+            for (let i = 0; i < data.length; i += 4) {
+                const color = `rgb(${
+                    data[i]
+                }, ${
+                    data[i + 1]
+                }, ${
+                    data[i + 2]
+                })`;
+                const count = colorCounts.get(color) || 0;
+                colorCounts.set(color, count + 1);
+            }
+
+            // Find the color with the maximum count
+            let maxCount = 0;
+            let mostCommonColor;
+            for (const [color, count] of colorCounts.entries()) {
+                if (count > maxCount) {
+                    maxCount = count;
+                    mostCommonColor = color;
+                }
+            }
+
+            return mostCommonColor;
+        }
+
+        function getCornerCoordinates(box) {
+            const {x, y, width, height} = box;
+            const topLeft = `(${x}, ${y})`;
+            const topRight = `(${
+                x + width
+            }, ${y})`;
+            const bottomLeft = `(${x}, ${
+                y + height
+            })`;
+            const bottomRight = `(${
+                x + width
+            }, ${
+                y + height
+            })`;
+            return `${topLeft}, ${topRight}, ${bottomLeft}, ${bottomRight}`;
+        }
+
+        function drawGridlines() {
+            const gridSize = parseInt(gridSizeInput.value);
+            const gridColor = "rgba(0, 0, 0, 0.3)";
+            const cellWidth = canvas.width / gridSize;
+            const cellHeight = canvas.height / gridSize;
+
+            // Clear the grid lines container
+            gridLinesContainer.innerHTML = "";
+
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) { // Calculate the coordinates of the grid zone
+                    const x = j * cellWidth;
+                    const y = i * cellHeight;
+
+                    // Vertical gridlines
+                    const verticalLine = document.createElement("div");
+                    verticalLine.classList.add("grid-line");
+                    verticalLine.style.left = `${x}px`;
+                    verticalLine.style.top = "0";
+                    verticalLine.style.width = "1px";
+                    verticalLine.style.height = `${
+                        canvas.height
+                    }px`;
+                    verticalLine.style.backgroundColor = gridColor;
+                    gridLinesContainer.appendChild(verticalLine);
+
+                    // Horizontal gridlines
+                    const horizontalLine = document.createElement("div");
+                    horizontalLine.classList.add("grid-line");
+                    horizontalLine.style.left = "0";
+                    horizontalLine.style.top = `${y}px`;
+                    horizontalLine.style.width = `${
+                        canvas.width
+                    }px`;
+                    horizontalLine.style.height = "1px";
+                    horizontalLine.style.backgroundColor = gridColor;
+                    gridLinesContainer.appendChild(horizontalLine);
+
+                    // Serial number for each grid
+                    const gridSerialNumber = document.createElement("div");
+                    gridSerialNumber.classList.add("grid-serial-number");
+                    gridSerialNumber.style.color = document.getElementById("display-text-color-input").value || "yellow";
+
+                    const serialNumber = i * gridSize + j + 1;
+                    if (serialNumber <= gridSize*gridSize) {
+                        gridSerialNumber.innerText = serialNumber.toString();
+                    }
+                    // Calculate the center coordinates of the grid zone
+                    const centerX = x + cellWidth / 2;
+                    const centerY = y + cellHeight / 2;
+                    // Position the serial number in the center of the grid zone
+                    // gridLinesContainer.style.color = document.getElementById("display-text-color-input").value || "yellow";
+
+                    gridSerialNumber.style.left = `${
+                        centerX - gridSerialNumber.offsetWidth / 2
+                    }px`;
+                    gridSerialNumber.style.top = `${
+                        centerY - gridSerialNumber.offsetHeight / 2
+                    }px`;
+                    gridLinesContainer.appendChild(gridSerialNumber);
+
+
+                }
+            }
+        }
+
+        function calculateFontSize(height) {
+            return Math.round(height / 4);
+        }
+
+        function guessFontName(box) {
+            const {x, y, width, height} = box;
+            const data = ctx.getImageData(x, y, width, height).data;
+
+            // Loop through the pixels and find the most common color
+            const colorCounts = new Map();
+            for (let i = 0; i < data.length; i += 4) {
+                const color = `rgb(${
+                    data[i]
+                }, ${
+                    data[i + 1]
+                }, ${
+                    data[i + 2]
+                })`;
+                const count = colorCounts.get(color) || 0;
+                colorCounts.set(color, count + 1);
+            }
+
+            // Find the color with the maximum count
+            let maxCount = 0;
+            let mostCommonColor;
+            for (const [color, count] of colorCounts.entries()) {
+                if (count > maxCount) {
+                    maxCount = count;
+                    mostCommonColor = color;
+                }
+            }
+
+            // Use the most common color to guess the font name
+            if (mostCommonColor === "rgb(0, 0, 0)") {
+                return "Arial";
+            } else if (mostCommonColor === "rgb(255, 255, 255)") {
+                return "Times New Roman";
+            } else {
+                return "Unknown";
+            }
+        }
+
+
+
+    });
+</script>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>ThumbnailGenius</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">How it works</a></li>
+
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Testimonials</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>ThumbnailGenius Thumbnail Bulk Generator</h1>
+    </section>
+<div class="container">
+<section class="file-upload mt-4">
+    <form id="file-upload-form" enctype="multipart/form-data">
+        <!-- Input for video metadata JSON, XLSX, and CSV -->
+        <div class="form-group">
+            <label for="video-meta-input">Step1:Select video metadata file (JSON, XLSX, CSV):</label>
+            <input type="file" class="form-control-file" id="video-meta-input" accept=".json,.xlsx,.csv" required>
+        </div>
+        <p>Demo video metadata file can be found <a href="https://github.com/wanghaisheng/video-publish-metadata-gpt/tree/wasm-photon" target="_blank">here</a>.</p>
+        <p>JSON files can be edited using <a href="https://jsoncrack.com/editor" target="_blank">this editor</a>.</p>
+    </form>
+</section>
+
+<section class="template-upload mt-4">
+    <!-- Input for template JSON -->
+    <form id="template-upload-form">
+        <div class="form-group">
+            <label for="template-input">Step2:Select template JSON:</label>
+            <input type="file" class="form-control-file" id="template-input" accept=".json" required>
+        </div>
+        <p>Demo template file can be found <a href="https://github.com/wanghaisheng/video-publish-metadata-gpt/tree/wasm-photon" target="_blank">here</a>.</p>
+        <p>JSON files can be edited using <a href="https://jsoncrack.com/editor" target="_blank">this editor</a>.</p>
+    </form>
+</section>
+
+<section class="image-upload mt-4">
+    <!-- Input for selecting a local image folder -->
+    <form id="image-folder-upload-form">
+        <div class="form-group">
+            <label for="image-folder-input">Step3:Select Image Folder:</label>
+            <input type="file" class="form-control-file" id="image-folder-input" directory multiple>
+        </div>
+    </form>
+</section>
+
+<section class="button-section mt-4">
+    <button type="button" id="process-button" class="btn btn-primary">Generate Thumbnails</button>
+
+    <!-- Add a div to display the hint -->
+    <div id="bgImageHint" class="text-danger" style="display: none;">Manually set Background image feature is not yet supported. Please remove the 'bg_image' field in the video meta file.</div>
+
+    <!-- Add a div to display the general hint -->
+    <div id="generalHint" class="text-danger" style="display: none;">Please submit video meta and template file, background images.</div>
+</section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h1>ThumbnailGenius</h1>
+            </div>
+            <ul class="footer-nav">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
