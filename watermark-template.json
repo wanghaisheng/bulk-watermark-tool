@@ -1,0 +1,21 @@
+{
+	"width": 1480,
+	"height": 920,
+	"texts": [{
+		"textType": "TopLeft",
+		"fontFile": "",
+		"x": 8,
+		"y": 10,
+		"width": 286,
+		"height": 96,
+		"topLeft": "(8, 10)",
+		"topRight": "(294, 10)",
+		"bottomLeft": "(8, 106)",
+		"bottomRight": "(294, 106)",
+		"fontSize": 24,
+		"fontName": "Times New Roman",
+		"gridSize": 10,
+		"nearestGridSerialNumber": 1,
+		"fontcolor": "rgb(255, 255, 255)"
+	}]
+}
